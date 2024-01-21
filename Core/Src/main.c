@@ -29,7 +29,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "bsp_can.h"
+#include "bsp_motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -111,6 +112,9 @@ int main(void)
   MX_TIM8_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
+    init_can_filter(&hfdcan1);
+    init_can_filter(&hfdcan2);
+    init_can_filter(&hfdcan3);
     HAL_UARTEx_ReceiveToIdle_DMA(&huart1,rx_buffer_uart1,sizeof(rx_buffer_uart1));
     HAL_UARTEx_ReceiveToIdle_DMA(&huart4,rx_buffer_uart4,sizeof(rx_buffer_uart4));
     HAL_UARTEx_ReceiveToIdle_DMA(&huart5,rx_buffer_uart5,sizeof(rx_buffer_uart5));
