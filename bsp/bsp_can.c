@@ -54,7 +54,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
         }
         else if(hfdcan == &hfdcan2)
         {
-
+            chassis_motor_decode(&motor1,CAN_1,can_msg.rx_header.Identifier,can_msg.rx_date);
         }
         else if(hfdcan == &hfdcan3)
         {

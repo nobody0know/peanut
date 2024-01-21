@@ -65,6 +65,7 @@ void SystemClock_Config(void);
 uint8_t rx_buffer_uart1[256];
 uint8_t rx_buffer_uart4[256];
 uint8_t rx_buffer_uart5[256];
+extern void lsm6dsl_read_data_polling(void);
 /* USER CODE END 0 */
 
 /**
@@ -128,6 +129,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+      lsm6dsl_read_data_polling();
   }
   /* USER CODE END 3 */
 }

@@ -51,12 +51,14 @@ endif ()
 
 include_directories(Core/Inc Drivers/STM32G4xx_HAL_Driver/Inc Drivers/STM32G4xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32G4xx/Include Drivers/CMSIS/Include
                     bsp
+                    hardware_driver
 )
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx)
 
 file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*"
         "bsp/*.*"
+        "hardware_driver/*.*"
 )
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32G474RETX_FLASH.ld)
