@@ -2,6 +2,7 @@
 // Created by lc201 on 2024/3/2.
 //
 
+#include <stdio.h>
 #include "bsp_SDcard.h"
 #include "main.h"
 
@@ -307,6 +308,7 @@ u8 SD_Init(void)
     //跳出循环后，检查原因：初始化成功？or 重试超时？
     if(retry==200)
     {
+        printf("time out\n");
         return 1;   //超时返回1
     }
     //-----------------SD卡复位到idle结束-----------------
@@ -318,7 +320,7 @@ u8 SD_Init(void)
     //如果卡片版本信息是v1.0版本的，即r1=0x05，则进行以下初始化
     if(r1 == 0x05)
     {
-        //printf("\r\n SD卡版本信息:V1.0 \r\n");
+        printf("\r\n SD card info: V1.0 \r\n");
         //设置卡类型为SDV1.0，如果后面检测到为MMC卡，再修改为MMC
         SD_Type = SD_TYPE_V1;
 
@@ -352,7 +354,7 @@ u8 SD_Init(void)
         //----------MMC卡额外初始化操作开始------------
         if(retry==400)
         {
-            //printf("\r\n SD卡信息: MMC卡 \r\n");
+            printf("\r\n SD card info: MMC card \r\n");
             retry = 0;
             //发送MMC卡初始化命令（没有测试）
             do
@@ -369,7 +371,7 @@ u8 SD_Init(void)
         }
         else
         {
-            //printf("\r\n SD卡信息: SD卡 \r\n");
+            printf("\r\n SD card info: SD card \r\n");
         }
         //----------MMC卡额外初始化操作结束------------
 
@@ -401,7 +403,7 @@ u8 SD_Init(void)
         //其中需要读取OCR数据，判断是SD2.0还是SD2.0HC卡
     else if(r1 == 0x01)
     {
-        //printf("\r\n SD卡版本信息:V2.0 \r\n");
+        printf("\r\n SD card info: V2.0 \r\n");
         //V2.0的卡，CMD8命令后会传回4字节的数据，要跳过再结束本命令
         buff[0] = SPI_FLASH_SendByte(0xFF);  //should be 0x00
         buff[1] = SPI_FLASH_SendByte(0xFF);  //should be 0x00
@@ -455,12 +457,12 @@ u8 SD_Init(void)
             if(buff[0]&0x40)    //检查CCS
             {
                 SD_Type = SD_TYPE_V2HC;
-               // printf("\r\n SD卡信息: SDHC \r\n");
+                printf("\r\n SD card info: SDHC \r\n");
             }
             else
             {
                 SD_Type = SD_TYPE_V2;
-                //printf("\r\n SD卡信息: SD2.0 \r\n");
+                printf("\r\n SD card info: SD2.0 \r\n");
             }
             //-----------鉴别SD2.0卡版本结束-----------
 

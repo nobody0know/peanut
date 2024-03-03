@@ -4,5 +4,5 @@
 
 #ifndef PEANUT_BSP_USART_H
 #define PEANUT_BSP_USART_H
-
+#include "main.h"
 #endif //PEANUT_BSP_USART_H

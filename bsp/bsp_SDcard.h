@@ -26,17 +26,7 @@ extern "C" {
 //#define  SPI_FLASH_ID                       0XEF4017     //W25Q64   8MB
 #define SPI_FLASH_ID                       0XEF4018     //W25Q128  16MB YS-F1Pro开发默认使用
 
-#define FLASH_SPIx                                 SPI1
-#define FLASH_SPIx_RCC_CLK_ENABLE()                __HAL_RCC_SPI1_CLK_ENABLE()
-#define FLASH_SPIx_RCC_CLK_DISABLE()               __HAL_RCC_SPI1_CLK_DISABLE()
 
-#define FLASH_SPI_GPIO_ClK_ENABLE()                __HAL_RCC_GPIOA_CLK_ENABLE()
-#define FLASH_SPI_GPIO_PORT                        GPIOA
-#define FLASH_SPI_SCK_PIN                          GPIO_PIN_5
-#define FLASH_SPI_MISO_PIN                         GPIO_PIN_6
-#define FLASH_SPI_MOSI_PIN                         GPIO_PIN_7
-
-#define FLASH_SPI_CS_CLK_ENABLE()                  __HAL_RCC_GPIOA_CLK_ENABLE()
 #define FLASH_SPI_CS_PORT                          GPIOA
 #define FLASH_SPI_CS_PIN                           GPIO_PIN_4
 
@@ -65,8 +55,8 @@ extern SPI_HandleTypeDef hspiflash;
 #define SD_TYPE_V2HC    4
 
 /* SPI总线速度设置*/
-#define SPI_SPEED_LOW   0
-#define SPI_SPEED_HIGH  1
+#define SPI_SPEED_LOW   1
+#define SPI_SPEED_HIGH  0
 
 /* SD传输数据结束后是否释放总线宏定义 */
 #define NO_RELEASE      0

@@ -41,7 +41,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+extern uint8_t rx_buffer_uart1[256];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -288,6 +288,7 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart1,rx_buffer_uart1, sizeof(rx_buffer_uart1));
 
   /* USER CODE END USART1_IRQn 1 */
 }
